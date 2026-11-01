@@ -1,0 +1,18 @@
+Component,Quantity,Price/Unit (USD),Purpose,Purchase Link
+Seeed Studio XIAO ESP32-C3,1,4.73,Main controller with built-in LiPo charging,https://robu.in/product/seeed-studio-xiao-esp32c3-tiny-mcu-board-with-wi-fi-and-ble-battery-charge-supported-power-efficiency-and-rich-interface/
+MPU9250 9-Axis Module,1,23.26,Accelerometer and gyroscope for tilt sensing (magnetometer unused),https://robu.in/product/mpu9250-9-axis-attitude-gyro-accelerator-magnetometer-sensor-module-2/
+PIMORONI VL53L1X Time of Flight (ToF) Sensor Breakout,2,16.83,Laser distance sensing on each side,https://robu.in/?p=1243061
+KY-008 650nm Laser Module,2,1.05,Visible aim dot for each distance sensor,https://www.amazon.in/s?k=KY-008+laser+module
+0.96 Inch I2C OLED Display Module (SSD1306),1,3.36,Shows the readings,https://robu.in/product/0-96-inch-i2c-iic-4pin-oled-display-module-blue-with-green-mark-module/
+6x6x5mm Tactile Push Button Switch (Pack of 10),1,0.18,Switches between modes,https://robu.in/?p=618182
+Slide Switch SS-12D00 1P2T,1,0.02,Main power on/off switch,https://robu.in/?p=1883688
+3.7V 250mAh LiPo Battery (502030),1,1.33,Rechargeable power source,https://www.amazon.in/s?k=3.7V+250mAh+502030+lipo+battery
+BC547 NPN Transistor (Pack of 20),1,0.41,Switches the laser modules on and off,https://robu.in/product/bc547-npn-transistor-pack-of-20/
+1K and 100K Ohm 1/4W Resistors (Pack of 10 each),2,0.13,Laser switch base resistors and battery-sense divider,https://robocraze.com/collections/resistors
+Ceramic Capacitor Assorted Kit (incl. 0.1uF),1,1.56,Decoupling for sensors and battery sense,https://robu.in/?p=781351
+10uF 16V Electrolytic Capacitor (Pack of 10),1,0.37,Smooths the 3.3V rail,https://www.amazon.in/s?k=10uF+16V+electrolytic+capacitor
+7x9 cm Universal PCB Prototype Board (Single Sided),1,0.39,Mounts the laser switching and divider circuit,https://robu.in/?p=1031035
+M2 Self-Tapping Screw Assortment Kit,1,2.63,Closes the case and mounts the boards,https://www.amazon.in/s?k=M2+self+tapping+screw+assortment+kit
+Male to Female Jumper Wires 40pcs 20cm,1,0.46,Prototyping connections between boards,https://robu.in/product/male-to-female-jumper-wires-40pcs-20cm/
+3-in-1 Soldering Iron Kit (25W iron + solder + flux),1,1.68,Making permanent connections once the circuit is final,https://www.amazon.in/gp/product/B07W32JT5N/ref=ox_sc_act_title_1?smid=A3LR6E2CIRD8HG&psc=1
+eSUN PLA Matte Deep Black 1.75mm Filament,1,12.09,3D printing the case,https://robu.in/product/esun-epla-gloss-1-75mm-3d-printing-filament-1kg/
