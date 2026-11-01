@@ -39,6 +39,8 @@ I built it to learn how sensors talk over I2C and how to combine accelerometer a
 | | **Total** | | **89.36** | | |
 
 ## Circuit Diagram
+<img width="662" height="709" alt="Screenshot 2026-10-28 at 11 22 28 PM" src="https://github.com/user-attachments/assets/f90eb49b-8c66-4e88-ae1e-d5759cb9280d" />  <br>
+The circuit diagram design software i used didn't have the lazer diode i'm using so I replaced it with whatever it had for representation purposes only.
 
 ## Pin Map
 
@@ -94,3 +96,19 @@ The KY-008 is rated 5 V / 5 mW and runs here from 3.3 V. Never look into the bea
 | Battery percentage is wrong | Divider values or the `BATT_DIV_RATIO`, `BATT_EMPTY_V`, `BATT_FULL_V` constants need adjusting against a multimeter reading |
 | Laser does not light | BC547 wired backwards or the base resistor is missing, or the laser is wired to the wrong side of the transistor |
 | Device turns itself off | Idle sleep after 60 s with no input. Press the button to wake it |
+
+##CAD Models
+1.Lid <br>
+<img width="546" height="442" alt="Screenshot 2026-11-01 at 10 00 06 AM" src="https://github.com/user-attachments/assets/a5824a74-f205-4806-a325-a7b1e6b89701" />
+ <br>
+2. Base  <br>
+<img width="604" height="439" alt="Screenshot 2026-11-01 at 10 00 29 AM" src="https://github.com/user-attachments/assets/c67eab62-c4a8-4e1c-80c9-efe22a533907" />
+ <br>
+3. Assembly  <br>
+<img width="1512" height="982" alt="Screenshot 2026-10-31 at 8 32 54 PM" src="https://github.com/user-attachments/assets/9689e03d-2899-415c-a1c4-2776a97b9eae" />
+<img width="1512" height="982" alt="Screenshot 2026-10-31 at 8 39 29 PM" src="https://github.com/user-attachments/assets/180b0204-12c3-43d5-b768-7c205f36057f" />
+ <br>
+4. Final with Lid on  <br>
+<img width="1512" height="982" alt="Screenshot 2026-10-31 at 9 05 13 PM" src="https://github.com/user-attachments/assets/952234fa-71d8-4a7b-b653-ba2c2415b5f3" />
+
+
