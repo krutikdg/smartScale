@@ -1,5 +1,20 @@
 # smartScale
-# Bill Of Materials
+
+A handheld tool that shows how level a surface is and measures distance with lasers on both sides. An IMU gives the tilt, two time-of-flight sensors give the distances, and the span between two walls is the two readings plus the width of the device. Readings appear on a small OLED, and one button cycles through the modes.
+I built it to learn how sensors talk over I2C and how to combine accelerometer and gyro data.
+
+## Built with
+
+- Seeed Studio XIAO ESP32-C3
+- MPU9250 (accelerometer and gyro for tilt)
+- 2x VL53L1X time-of-flight distance sensors
+- 2x KY-008 laser modules (visible aim dot)
+- 0.96" SSD1306 OLED display
+- 3.7 V LiPo battery
+- Arduino IDE (C++)
+- Fusion 360 (case design)
+- PLA, 3D printed
+
 ## Bill of Materials
 
 | # | Component | Qty | Price/Unit (USD) | Purpose | Purchase Link |
@@ -22,3 +37,60 @@
 | 16 | 3-in-1 Soldering Iron Kit (25W iron + solder + flux) | 1 | 1.68 | Making permanent connections once the circuit is final | [Link](https://www.amazon.in/gp/product/B07W32JT5N/ref=ox_sc_act_title_1?smid=A3LR6E2CIRD8HG&psc=1) |
 | 17 | eSUN PLA Matte Deep Black 1.75mm Filament | 1 | 12.09 | 3D printing the case | [Link](https://robu.in/product/esun-epla-gloss-1-75mm-3d-printing-filament-1kg/) |
 | | **Total** | | **89.36** | | |
+
+## Circuit Diagram
+
+## Pin Map
+
+| Function | XIAO ESP32-C3 Pin | GPIO |
+|----------|-------------------|------|
+| I2C SDA | D4 | 6 |
+| I2C SCL | D5 | 7 |
+| VL53L1X A (XSHUT) | D10 | 10 |
+| VL53L1X B (XSHUT) | D2 | 4 |
+| Laser A switch | D3 | 5 |
+| Laser B switch | D6 | 21 |
+| Mode button | D7 | 20 |
+| Battery voltage (ADC) | D1 | 3 |
+
+## Build steps
+
+1. Print the base (`base.stl`) and lid (`lid.stl`) from `/CAD`.
+2. Test each module on a breadboard before wiring anything permanently: the OLED first, then the MPU9250 (`WHO_AM_I` should read `0x71`), then each VL53L1X, then each laser through its transistor.
+3. Wire everything following the pin map above.
+4. Solder the laser switching circuit (2x BC547, 2x 1 kΩ) and the battery divider (2x 100 kΩ, 100 nF) onto the prototype board.
+5. Fit the parts into the case: battery, XIAO, MPU9250, OLED, ToF sensors, lasers, button and slide switch.
+6. Mount the MPU9250 **rigidly** and flat, and note its orientation. A loose sensor gives bad angle data.
+7. Install the board package and libraries, select `XIAO_ESP32C3` with USB CDC On Boot set to Enabled, and flash the firmware.
+8. Close the case with the screws.
+
+## Calibration
+
+1. **Gyro:** it calibrates itself at every power-on, so keep the device still on the bench for the first couple of seconds.
+2. **Tilt direction:** tilt the device left/right and forward/back. If the angle on the OLED moves the wrong way, flip `PITCH_SIGN` or `ROLL_SIGN` in the code (`1` or `-1`).
+3. **Level zero:** set the device on a surface you know is level (a spirit level or a phone level app will do). In LEVEL mode, long-press the button to store the zero offset. It is saved to flash, so it survives power-off.
+4. **Distance:** point each sensor at a flat wall at a known distance, measured with a tape (500 mm and 1000 mm, for example). If the reading is off by a constant amount, adjust the offset. Repeat on both sensors.
+5. **Span length:** measure the distance between the two sensor faces on the finished device and set `SENSOR_SPAN_MM` to it (default 100 mm). Check it against a known length, such as a door frame.
+6. **Battery:** compare the OLED battery percentage with a multimeter reading across the battery. Adjust `BATT_DIV_RATIO` until they agree, and tune `BATT_EMPTY_V` and `BATT_FULL_V` if needed.
+7. **Level tolerance:** `LEVEL_TOL_DEG` (default 0.5°) sets when the display shows "level". Tighten or loosen it to suit you.
+
+## Safety
+
+The KY-008 is rated 5 V / 5 mW and runs here from 3.3 V. Never look into the beam or point it at anyone's eyes, and keep it away from reflective surfaces.
+
+## Troubleshooting
+
+| Symptom | Likely cause |
+|---------|--------------|
+| Board not detected by the computer | Charge-only USB cable. Try a data cable |
+| No serial output | `USB CDC On Boot` is not set to Enabled in the Arduino IDE |
+| OLED stays blank | SDA/SCL swapped or loose, or the display is not at address `0x3C` |
+| MPU9250 not found | The firmware expects `WHO_AM_I = 0x71`. Some clone chips report a different ID |
+| Only one ToF sensor works | XSHUT wiring on D10 / D2 is wrong, so both sensors still answer at the default address `0x29` |
+| Distance reads max or invalid | Target is beyond the 4000 mm limit set in the firmware (`TOF_MAX_MM`) |
+| Tilt angle moves the wrong way | Flip `PITCH_SIGN` or `ROLL_SIGN` in the code |
+| Angle drifts after power-on | The device was moving during the gyro calibration at boot. Power-cycle it while it sits still |
+| "Level" never shows | Zero offset not set (long-press in LEVEL mode on a level surface), or `LEVEL_TOL_DEG` is too tight |
+| Battery percentage is wrong | Divider values or the `BATT_DIV_RATIO`, `BATT_EMPTY_V`, `BATT_FULL_V` constants need adjusting against a multimeter reading |
+| Laser does not light | BC547 wired backwards or the base resistor is missing, or the laser is wired to the wrong side of the transistor |
+| Device turns itself off | Idle sleep after 60 s with no input. Press the button to wake it |
