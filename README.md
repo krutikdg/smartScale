@@ -21,4 +21,4 @@
 | 15 | Male to Female Jumper Wires 40pcs 20cm | 1 | 0.46 | Prototyping connections between boards | [Link](https://robu.in/product/male-to-female-jumper-wires-40pcs-20cm/) |
 | 16 | 3-in-1 Soldering Iron Kit (25W iron + solder + flux) | 1 | 1.68 | Making permanent connections once the circuit is final | [Link](https://www.amazon.in/gp/product/B07W32JT5N/ref=ox_sc_act_title_1?smid=A3LR6E2CIRD8HG&psc=1) |
 | 17 | eSUN PLA Matte Deep Black 1.75mm Filament | 1 | 12.09 | 3D printing the case | [Link](https://robu.in/product/esun-epla-gloss-1-75mm-3d-printing-filament-1kg/) |
-| | **Total** | | **88.49** | | |
+| | **Total** | | **89.36** | | |
